@@ -1,5 +1,11 @@
 from django.shortcuts import render
+from contact.models import Contact
+
 
 def index(request):
-    return render(request, 'contact/index.html')
+    contacts = Contact.objects.all()
+
+    ctx = {'contacts': contacts,}
+
+    return render(request, 'contact/index.html', ctx)
 
