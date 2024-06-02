@@ -1,13 +1,11 @@
 {% extends "global/base.html" %}
 
 {% block content %}
-    <h1>Criar contato</h1>
     <div class="form-wrapper">
-
     <h2>Contato</h2>
 
     <form
-        action="{% url 'contact:create' %}"
+        action="{{ form_action }}"
         method="POST"
         enctype="multipart/form-data"
     >
@@ -26,6 +24,12 @@
                         </p>
                     {% endif %}
                 </div>
+
+                {% if field.name == 'picture' and field.value.url %}
+                    <div class="form-group">
+                    <img src="{{ field.value.url }}" alt="">
+                    </div>
+                {% endif %}
             {% endfor %}
         </div>
 
